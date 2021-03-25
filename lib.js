@@ -1,6 +1,6 @@
 
 // Define main elements in HTML
-const addBookBtn = document.querySelector('button');
+const addBookBtn = document.querySelector('#add-book-btn');
 const myForm = document.querySelector('form');
 const bookTitle= document.querySelector('#booktitle');
 const bookAuthor= document.querySelector('#bookauthor');
@@ -86,6 +86,26 @@ function addBookToLib(){
 
 
 bookSubmit.addEventListener('click', (e) => {
+  e.preventDefault();
+
+  if(bookTitle.value && bookAuthor.value && bookPages.value)
+  {
     addBookToLib();
-    e.preventDefault();
+    bookTitle.value = '';
+    bookAuthor.value = '';
+    bookPages.value = '';
+    bookRead.checked = false;
+    myForm.classList.remove('show');
+  }
+  else
+    alert('Fill all the blanks.');
+})
+
+addBookBtn.addEventListener('click', function(){
+  bookRead.checked = false;
+  myForm.classList = 'show';
+})
+
+boxSection.addEventListener('click', function(){
+  myForm.classList.remove('show');
 })

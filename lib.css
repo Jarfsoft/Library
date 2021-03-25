@@ -1,3 +1,11 @@
 .row {
   box-sizing: border-box;
 }
+
+form {
+  display: none;
+}
+
+.show {
+  display: block;
+}
