@@ -8,11 +8,11 @@ const bookSubmit = document.querySelector('#submitbtn');
 
 // Create Book box section:
 const boxSection = document.querySelector('#box-section')
-const boxDiv = document.createElement('div');
-const boxTitle = document.createElement('h1');
-const boxAuthor = document.createElement('h1');
-const boxPages = document.createElement('h1');
-const boxRead = document.createElement('p');
+// let boxDiv = document.createElement('div');
+// let boxTitle = document.createElement('h1');
+// let boxAuthor = document.createElement('h1');
+// let boxPages = document.createElement('h1');
+// let boxRead = document.createElement('p');
 
 
 let myLibrary = [];
@@ -24,30 +24,40 @@ function Book(title, author , pages , read) {
   this.read = read
 }
 
+// function createBookBox(){
+//   document.body.appendChild(boxDiv);
+//   boxDiv.appendChild(boxTitle);
+//   boxDiv.appendChild(boxAuthor);
+//   boxDiv.appendChild(boxPages);
+//   boxDiv.appendChild(boxRead);
+
+  
+// }
 // book = new Book('test' , 'juan' , 500, true)
 function addBookToLib(){
-  let newBook = new Book(bookTitle.value , bookAuthor.value , bookPages.value , bookRead.checked );
-  boxTitle.innerText = bookTitle.value;
+  myLibrary.push(new Book(bookTitle.value , bookAuthor.value , bookPages.value , bookRead.checked ));
+  let boxDiv = document.createElement('div');
+let boxTitle = document.createElement('h1');
+let boxAuthor = document.createElement('h1');
+let boxPages = document.createElement('h1');
+let boxRead = document.createElement('p');
+  boxTitle.innerText = bookTitle.value ;
   boxAuthor.innerText = bookAuthor.value;
-  boxPages.innerText = bookPages.value;
+  boxPages.innerText =  bookPages.value;
   boxRead.innerText = bookRead.checked === true ? "I read it" : "Not really !"
-  myLibrary.push(newBook);
-
-}
-
-
-function createBookBox(){
-  for (let book of myLibrary) {
- boxSection.appendChild(boxDiv);
+ 
+  document.body.appendChild(boxDiv);
   boxDiv.appendChild(boxTitle);
   boxDiv.appendChild(boxAuthor);
   boxDiv.appendChild(boxPages);
   boxDiv.appendChild(boxRead);
-  }
+
 }
 
+
+
 bookSubmit.addEventListener('click', (e) => {
+  // createBookBox();
   addBookToLib();
-  createBookBox();
   e.preventDefault();
 })
