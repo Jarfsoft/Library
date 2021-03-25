@@ -43,7 +43,9 @@ function addBookToLib(){
   let boxPages = document.createElement('h1');
   let boxRead = document.createElement('p');
   let removeBtn = document.createElement('button');
-  removeBtn.innerText = "Remove this book"
+  let readBtn = document.createElement('button');
+  removeBtn.innerText = "Remove this book";
+  readBtn.innerText = "Change"
   boxTitle.innerText = bookTitle.value ;
   boxAuthor.innerText = bookAuthor.value;
   boxPages.innerText =  bookPages.value;
@@ -54,10 +56,22 @@ function addBookToLib(){
   boxDiv.appendChild(boxAuthor);
   boxDiv.appendChild(boxPages);
   boxDiv.appendChild(boxRead);
+  boxDiv.appendChild(readBtn);
   boxDiv.appendChild(removeBtn);
 
   removeBtn.addEventListener('click' , function(){
     boxDiv.remove()
+  })
+
+  readBtn.addEventListener('click', function(){
+    if (bookRead.checked === true) {
+      bookRead.checked = false;
+      boxRead.innerText =  "Not really !"
+    }
+    else {
+       bookRead.checked = true;
+      boxRead.innerText =  "I read it" 
+    }
   })
 
 }
