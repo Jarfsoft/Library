@@ -1,5 +1,7 @@
+
+// Define main elements in HTML
 const addBookBtn = document.querySelector('button');
-// const myForm = document.createElement('form');
+const myForm = document.querySelector('form');
 const bookTitle= document.querySelector('#booktitle');
 const bookAuthor= document.querySelector('#bookauthor');
 const bookPages= document.querySelector('#pages');
@@ -8,12 +10,6 @@ const bookSubmit = document.querySelector('#submitbtn');
 
 // Create Book box section:
 const boxSection = document.querySelector('#box-section')
-// let boxDiv = document.createElement('div');
-// let boxTitle = document.createElement('h1');
-// let boxAuthor = document.createElement('h1');
-// let boxPages = document.createElement('h1');
-// let boxRead = document.createElement('p');
-
 
 let myLibrary = [];
 
@@ -24,34 +20,41 @@ function Book(title, author , pages , read) {
   this.read = read
 }
 
-// function createBookBox(){
-//   document.body.appendChild(boxDiv);
-//   boxDiv.appendChild(boxTitle);
-//   boxDiv.appendChild(boxAuthor);
-//   boxDiv.appendChild(boxPages);
-//   boxDiv.appendChild(boxRead);
-
-  
-// }
-// book = new Book('test' , 'juan' , 500, true)
 function addBookToLib(){
   let newBook = new Book(bookTitle.value , bookAuthor.value , bookPages.value , bookRead.checked )
   myLibrary.push(newBook);
+
+  // create elements for a book display:
   let boxDiv = document.createElement('div');
-  let boxTitle = document.createElement('h1');
-  let boxAuthor = document.createElement('h1');
-  let boxPages = document.createElement('h1');
+  let boxTitle = document.createElement('p');
+  let boxAuthor = document.createElement('p');
+  let boxPages = document.createElement('p');
   let boxRead = document.createElement('p');
   let removeBtn = document.createElement('button');
   let readBtn = document.createElement('button');
   removeBtn.innerText = "Remove this book";
-  readBtn.innerText = "Change"
-  boxTitle.innerText = bookTitle.value ;
-  boxAuthor.innerText = bookAuthor.value;
-  boxPages.innerText =  bookPages.value;
-  boxRead.innerText = bookRead.checked === true ? "I read it" : "Not really !"
+  
+  // Add classes for style:
+  boxDiv.classList = 'col-3 card bg-light p-2 m-2';
+  boxTitle.classList = 'card-title font-weight-bold';
+  removeBtn.classList = 'btn btn-warning m-1 p-1'
+  // Data for display:
+  boxTitle.innerText = `Book Title: ${bookTitle.value}` ;
+  boxAuthor.innerText = `Book Author: ${bookAuthor.value}`;
+  boxPages.innerText =  `Number of pages: ${bookPages.value}`;
+  if (bookRead.checked === true) {
+    boxRead.innerText = "I read This book";
+    readBtn.innerText = "Not really , I did not read it !";
+    readBtn.classList = 'btn btn-danger m-1 p-1';
+  }
+  else {
+    boxRead.innerText =  "Opps , I did not read this book !";
+    readBtn.innerText = "I read this book";
+    readBtn.classList = 'btn btn-success m-1 p-1';
+  }
  
-  document.body.appendChild(boxDiv);
+  // Append elements under its section:
+  boxSection.appendChild(boxDiv);
   boxDiv.appendChild(boxTitle);
   boxDiv.appendChild(boxAuthor);
   boxDiv.appendChild(boxPages);
@@ -66,11 +69,15 @@ function addBookToLib(){
   readBtn.addEventListener('click', function(){
     if (bookRead.checked === true) {
       bookRead.checked = false;
-      boxRead.innerText =  "Not really !"
+      boxRead.innerText =  "Opps , I did not read this book !";
+      readBtn.innerText = "I read this book";
+      readBtn.classList = 'btn btn-success m-1 p-1';
     }
     else {
-       bookRead.checked = true;
-      boxRead.innerText =  "I read it" 
+      bookRead.checked = true;
+      boxRead.innerText = "I read This book";
+      readBtn.innerText = "Not really , I did not read it !";
+      readBtn.classList = 'btn btn-danger m-1 p-1';
     }
   })
 
@@ -79,7 +86,6 @@ function addBookToLib(){
 
 
 bookSubmit.addEventListener('click', (e) => {
-  // createBookBox();
-  addBookToLib();
-  e.preventDefault();
+    addBookToLib();
+    e.preventDefault();
 })
