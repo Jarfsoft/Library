@@ -35,12 +35,15 @@ function Book(title, author , pages , read) {
 // }
 // book = new Book('test' , 'juan' , 500, true)
 function addBookToLib(){
-  myLibrary.push(new Book(bookTitle.value , bookAuthor.value , bookPages.value , bookRead.checked ));
+  let newBook = new Book(bookTitle.value , bookAuthor.value , bookPages.value , bookRead.checked )
+  myLibrary.push(newBook);
   let boxDiv = document.createElement('div');
-let boxTitle = document.createElement('h1');
-let boxAuthor = document.createElement('h1');
-let boxPages = document.createElement('h1');
-let boxRead = document.createElement('p');
+  let boxTitle = document.createElement('h1');
+  let boxAuthor = document.createElement('h1');
+  let boxPages = document.createElement('h1');
+  let boxRead = document.createElement('p');
+  let removeBtn = document.createElement('button');
+  removeBtn.innerText = "Remove this book"
   boxTitle.innerText = bookTitle.value ;
   boxAuthor.innerText = bookAuthor.value;
   boxPages.innerText =  bookPages.value;
@@ -51,6 +54,11 @@ let boxRead = document.createElement('p');
   boxDiv.appendChild(boxAuthor);
   boxDiv.appendChild(boxPages);
   boxDiv.appendChild(boxRead);
+  boxDiv.appendChild(removeBtn);
+
+  removeBtn.addEventListener('click' , function(){
+    boxDiv.remove()
+  })
 
 }
 
