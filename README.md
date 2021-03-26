@@ -30,8 +30,8 @@ To get a local copy up and running follow these simple example steps.
 **STEP 1**
 In the terminal, Run the following commands.
 
-- `git clone git@github.com:AlanSoto31/Library.git`
-- `cd Library-JS`
+- `git clone https://github.com/AhmedAmin90/Library`
+- `cd Library`
 
 **STEP 2**
 
