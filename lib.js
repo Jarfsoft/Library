@@ -13,15 +13,23 @@ const boxSection = document.querySelector('#box-section');
 
 const myLibrary = [];
 
-function Book(title, author, pages, read) {
-  this.title = title;
-  this.author = author;
-  this.pages = pages;
-  this.read = read;
+// First way to Create factory fucntion and return book:
+// function makeLibrary(title, author, pages, read){
+//   const book = {};
+//   book.title = title;
+//   book.author = author;
+//   book.pages = pages;
+//   book.read = read;
+//   return book
+// }
+
+// More efficient way to do that:
+function makeLibrary(title, author, pages, read){
+  return {title , author , pages , read}
 }
 
 function addBookToLib() {
-  const newBook = new Book(bookTitle.value, bookAuthor.value, bookPages.value, bookRead.checked);
+  const newBook = makeLibrary(bookTitle.value, bookAuthor.value, bookPages.value, bookRead.checked);
   myLibrary.push(newBook);
 
   // create elements for a book display:
@@ -68,11 +76,13 @@ function addBookToLib() {
   readBtn.addEventListener('click', () => {
     if (bookRead.checked === true) {
       bookRead.checked = false;
+      newBook.read = false; // this to change the status in the myLibrary array incase of save it locally.
       boxRead.innerText = 'Opps , I did not read this book !';
       readBtn.innerText = 'I read this book';
       readBtn.classList = 'btn btn-success m-1 p-1';
     } else {
       bookRead.checked = true;
+      newBook.read = true; // this to change the status in the myLibrary array incase of save it locally.
       boxRead.innerText = 'I read This book';
       readBtn.innerText = 'Not really , I did not read it !';
       readBtn.classList = 'btn btn-danger m-1 p-1';
