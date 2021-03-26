@@ -3,7 +3,7 @@
     "babel-eslint": "10.1.x",
     "eslint": "6.8.x",
     "eslint-config-airbnb-base": "14.1.x",
-    "eslint-plugin-import": "2.20.x",
+    "eslint-plugin-import": "^2.22.1",
     "stylelint": "13.3.x",
     "stylelint-config-standard": "20.0.x",
     "stylelint-csstree-validator": "^1.9.0",
