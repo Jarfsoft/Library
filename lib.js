@@ -24,15 +24,31 @@ const myLibrary = [];
 // }
 
 // More efficient way to do that:
-function makeLibrary(title, author, pages, read) {
-  return {
-    title, author, pages, read,
-  };
+// function makeLibrary(title, author, pages, read) {
+//   return {
+//     title, author, pages, read,
+//   };
+// }
+
+class MakeLibrary {
+  constructor(title, author, pages, read) {
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.read = read;
+  }
+
+  pushToArr() {
+    myLibrary.push(this);
+  }
 }
 
 function addBookToLib() {
-  const newBook = makeLibrary(bookTitle.value, bookAuthor.value, bookPages.value, bookRead.checked);
-  myLibrary.push(newBook);
+  const newBook = new MakeLibrary(bookTitle.value,
+    bookAuthor.value,
+    bookPages.value,
+    bookRead.checked);
+  newBook.pushToArr();
 
   // create elements for a book display:
   const boxDiv = document.createElement('div');
