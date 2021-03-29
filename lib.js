@@ -13,15 +13,24 @@ const boxSection = document.querySelector('#box-section');
 
 const myLibrary = [];
 
-function Book(title, author, pages, read) {
-  this.title = title;
-  this.author = author;
-  this.pages = pages;
-  this.read = read;
+class Library {
+  constructor(title, author, pages, read) {
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.read = read;
+  }
+
+  pushToArr() {
+    myLibrary.push(this);
+  }
 }
 
 function addBookToLib() {
-  const newBook = new Book(bookTitle.value, bookAuthor.value, bookPages.value, bookRead.checked);
+  const newBook = new Library(bookTitle.value,
+    bookAuthor.value,
+    bookPages.value,
+    bookRead.checked);
   myLibrary.push(newBook);
 
   // create elements for a book display:
