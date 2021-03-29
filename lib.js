@@ -13,15 +13,14 @@ const boxSection = document.querySelector('#box-section');
 
 const myLibrary = [];
 
-function Book(title, author, pages, read) {
-  this.title = title;
-  this.author = author;
-  this.pages = pages;
-  this.read = read;
+function createBook(title, author, pages, read) {
+  return {
+    title, author, pages, read,
+  };
 }
 
 function addBookToLib() {
-  const newBook = new Book(bookTitle.value, bookAuthor.value, bookPages.value, bookRead.checked);
+  const newBook = createBook(bookTitle.value, bookAuthor.value, bookPages.value, bookRead.checked);
   myLibrary.push(newBook);
 
   // create elements for a book display:
@@ -68,11 +67,13 @@ function addBookToLib() {
   readBtn.addEventListener('click', () => {
     if (bookRead.checked === true) {
       bookRead.checked = false;
+      newBook.read = false;
       boxRead.innerText = 'Opps , I did not read this book !';
       readBtn.innerText = 'I read this book';
       readBtn.classList = 'btn btn-success m-1 p-1';
     } else {
       bookRead.checked = true;
+      newBook.read = true;
       boxRead.innerText = 'I read This book';
       readBtn.innerText = 'Not really , I did not read it !';
       readBtn.classList = 'btn btn-danger m-1 p-1';
